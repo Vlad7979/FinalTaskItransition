@@ -11,10 +11,10 @@ import javax.validation.Valid;
 import com.vladbadey.demo.enums.ERole;
 import com.vladbadey.demo.entity.Role;
 import com.vladbadey.demo.entity.User;
-import com.vladbadey.demo.payload.request.LoginRequest;
-import com.vladbadey.demo.payload.request.SignupRequest;
-import com.vladbadey.demo.payload.response.JwtResponse;
-import com.vladbadey.demo.payload.response.MessageResponse;
+import com.vladbadey.demo.dto.request.LoginRequest;
+import com.vladbadey.demo.dto.request.SignupRequest;
+import com.vladbadey.demo.dto.response.JwtResponse;
+import com.vladbadey.demo.dto.response.MessageResponse;
 import com.vladbadey.demo.repository.RoleRepository;
 import com.vladbadey.demo.repository.UserRepository;
 import com.vladbadey.demo.security.jwt.JwtUtils;
@@ -23,7 +23,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -38,6 +37,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @AllArgsConstructor(onConstructor_ = @Autowired)
 public class AuthController {
+
     private AuthenticationManager authenticationManager;
 
     private UserRepository userRepository;

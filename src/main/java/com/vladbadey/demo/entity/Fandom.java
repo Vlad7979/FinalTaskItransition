@@ -1,20 +1,20 @@
 package com.vladbadey.demo.entity;
 
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 @Entity
 @Table(name = "fandoms")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Fandom {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private int id;
 
     @Column(length = 50)

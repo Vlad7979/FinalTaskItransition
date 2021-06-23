@@ -1,4 +1,4 @@
-package com.vladbadey.demo.payload.request;
+package com.vladbadey.demo.dto.request;
 
 import javax.validation.constraints.NotBlank;
 

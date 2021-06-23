@@ -43,7 +43,7 @@ public class User {
 
     private boolean flag;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -54,6 +54,12 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "fandom_id"))
     private Set<Fandom> fandoms = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Composition> usersCompositions = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Composition> favoritesCompositions = new HashSet<>();
 
     public User(String username, String email, String password) {
         this.username = username;

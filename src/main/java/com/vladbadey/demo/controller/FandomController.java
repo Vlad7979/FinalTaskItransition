@@ -20,7 +20,7 @@ public class FandomController {
     FandomRepository fandomRepository;
 
     @GetMapping("/all")
-    public List<Fandom> getAllFandoms(User user) {
+    public List<Fandom> getAllFandoms() {
         return fandomRepository.findAll();
     }
 }

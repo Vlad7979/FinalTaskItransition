@@ -15,24 +15,32 @@ import java.util.Set;
 public class Composition {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int composition_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "composition_name")
-    private String composition_name;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "description")
     private String description;
 
-    @Column(name = "content")
-    private String content;
-
     @Column(name = "image")
     private String image;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<Chapter> chapters = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinTable( name = "composition_fandom",
             joinColumns = @JoinColumn(name = "composition_id"),
             inverseJoinColumns = @JoinColumn(name = "fandom_id"))
-    private Set<Fandom> fandoms = new HashSet<>();
+    private Fandom fandom;
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

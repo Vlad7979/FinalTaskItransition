@@ -1,4 +1,4 @@
-package com.vladbadey.demo.payload.response;
+package com.vladbadey.demo.dto.response;
 
 public class MessageResponse {
     private String message;
