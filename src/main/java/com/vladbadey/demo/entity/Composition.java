@@ -3,6 +3,7 @@ package com.vladbadey.demo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Composition {
 
     @Id
@@ -27,6 +29,9 @@ public class Composition {
     @Column(name = "image")
     private String image;
 
+    @Column(name = "date")
+    private Date date;
+
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Chapter> chapters = new HashSet<>();
 
@@ -34,7 +39,7 @@ public class Composition {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable( name = "composition_fandom",
             joinColumns = @JoinColumn(name = "composition_id"),
             inverseJoinColumns = @JoinColumn(name = "fandom_id"))

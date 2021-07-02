@@ -29,13 +29,12 @@ public class ChapterController {
     }
 
     @GetMapping("/{id}/{chapter_id}")
-    public Chapter getChapter(@PathVariable Long id, @PathVariable Long chapter_id) throws NotFoundException {
-        return getAllChapters().stream()
-                .filter(t -> chapter_id.equals(t.getId()))
-                .findFirst()
-                .orElseThrow(
-                        () -> new NotFoundException("Cannot find chapter by this id")
-                );
+    public ResponseEntity<?> getChapter(@PathVariable Long id, @PathVariable Long chapter_id) throws NotFoundException {
+        return ResponseEntity.ok(chapterService.findChapter(chapter_id));
+    }
+    @GetMapping("/getChapterByName")
+    public ResponseEntity<?> getChaptersByCompositionName(@RequestParam String name) {
+        return ResponseEntity.ok(chapterService.findChaptersByCompositionName(name));
     }
 
     @PostMapping("/{id}/create")

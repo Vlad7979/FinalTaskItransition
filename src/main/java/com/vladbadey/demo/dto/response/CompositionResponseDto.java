@@ -14,4 +14,6 @@ public class CompositionResponseDto {
     private String description;
 
     private String image;
+
+    private String fandom;
 }

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import static javax.persistence.GenerationType.IDENTITY;
+import static javax.persistence.GenerationType.AUTO;
 
 @Entity
 @Table(name = "fandoms")
@@ -14,12 +14,12 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Fandom {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = AUTO)
+    private Long id;
 
     @Column(length = 50)
     private String name;
 
-    @Column(length = 250, nullable = false )
+    @Column(length = 250)
     private String image;
 }

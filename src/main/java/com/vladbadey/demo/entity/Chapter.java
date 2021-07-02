@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Table(name = "chapter")
 @Data
 @NoArgsConstructor
+@ToString
 public class Chapter {
 
     @Id

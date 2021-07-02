@@ -1,13 +1,17 @@
 package com.vladbadey.demo.service;
 
-import com.vladbadey.demo.dto.request.CompositionRequestDto;
 import com.vladbadey.demo.dto.response.CompositionResponseDto;
-import com.vladbadey.demo.exceptions.NotFoundException;
+
+import java.util.List;
 
 public interface CompositionService {
-    CompositionResponseDto createComposition(CompositionRequestDto compositionDto);
+    List<CompositionResponseDto> findAllCompositions();
 
-    CompositionResponseDto updateCompositionById(Long id, CompositionRequestDto compositionDto) throws NotFoundException;
+    CompositionResponseDto findComposition(Long id);
 
-    void deleteCompositionById(Long id);
+    CompositionResponseDto findCompositionByName(String name);
+
+    List<CompositionResponseDto> findAllSortedCompositions();
+
+    List<CompositionResponseDto> findCompositionsByFandom(String name);
 }

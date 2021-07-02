@@ -71,14 +71,11 @@ public class AuthController {
     }
 
     @PostMapping("/update")
-    public void update(@RequestBody User user) {
-        log.info("user = {}", user);
-        Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
-        User currentUser = optionalUser.get();
-        log.info("currentUser = {}", currentUser);
-        if (currentUser != null) {
-            currentUser.setFlag(true);
-            userRepository.save(currentUser);
+    public void update(String email) {
+        User user = userRepository.findByEmail(email).get();
+        if (user != null) {
+            user.setFlag(true);
+            userRepository.save(user);
         }
     }
 

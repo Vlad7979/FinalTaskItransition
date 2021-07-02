@@ -1,16 +1,14 @@
 package com.vladbadey.demo.entity;
 
 import com.vladbadey.demo.enums.ERole;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 public class Role {
 

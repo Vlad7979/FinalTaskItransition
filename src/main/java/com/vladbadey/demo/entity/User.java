@@ -1,9 +1,7 @@
 package com.vladbadey.demo.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -50,7 +48,7 @@ public class User {
     private Set<Role> roles = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable( name = "user_fandoms",
+    @JoinTable(	name = "user_fandoms",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "fandom_id"))
     private Set<Fandom> fandoms = new HashSet<>();
@@ -58,7 +56,10 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<Composition> usersCompositions = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(	name = "user_favorites_compositions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "composition_id"))
     private Set<Composition> favoritesCompositions = new HashSet<>();
 
     public User(String username, String email, String password) {

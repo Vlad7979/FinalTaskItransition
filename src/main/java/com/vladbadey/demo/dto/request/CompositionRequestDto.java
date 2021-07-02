@@ -10,4 +10,6 @@ public class CompositionRequestDto {
     private String description;
 
     private String image;
+
+    private String fandom;
 }

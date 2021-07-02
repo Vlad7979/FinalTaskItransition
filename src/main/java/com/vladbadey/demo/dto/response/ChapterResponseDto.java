@@ -12,4 +12,6 @@ public class ChapterResponseDto {
     private Long id;
 
     private String name;
+
+    private String content;
 }
