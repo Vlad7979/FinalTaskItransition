@@ -1,8 +1,6 @@
 package com.vladbadey.demo.controller;
 
 import com.vladbadey.demo.dto.request.FandomRequestDto;
-import com.vladbadey.demo.entity.User;
-import com.vladbadey.demo.repository.UserRepository;
 import com.vladbadey.demo.service.FandomService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

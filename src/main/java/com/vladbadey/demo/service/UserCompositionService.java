@@ -16,4 +16,6 @@ public interface UserCompositionService {
     List<CompositionResponseDto> findAllUserCompositions(Long id);
 
     CompositionResponseDto findUserComposition(Long id);
+
+    List<CompositionResponseDto> findAllUserCompositionsByName(String name);
 }

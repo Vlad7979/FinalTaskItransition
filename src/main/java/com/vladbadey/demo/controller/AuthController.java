@@ -70,17 +70,9 @@ public class AuthController {
                 roles));
     }
 
-    @PostMapping("/update")
-    public void update(String email) {
-        User user = userRepository.findByEmail(email).get();
-        if (user != null) {
-            user.setFlag(true);
-            userRepository.save(user);
-        }
-    }
-
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+        log.info("signup");
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return ResponseEntity
                     .badRequest()
@@ -129,6 +121,7 @@ public class AuthController {
         }
 
         user.setRoles(roles);
+        user.setFlag(true);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));

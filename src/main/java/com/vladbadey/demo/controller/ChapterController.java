@@ -15,24 +15,18 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/compositions")
+@RequestMapping("/api/compositions/chapters")
 @AllArgsConstructor(onConstructor_ = @Autowired)
 public class ChapterController {
 
-    private final ChapterRepository chapterRepository;
-
     private final ChapterService chapterService;
-
-    @GetMapping("/{id}/all")
-    public List<Chapter> getAllChapters() {
-        return chapterRepository.findAll();
-    }
 
     @GetMapping("/{id}/{chapter_id}")
     public ResponseEntity<?> getChapter(@PathVariable Long id, @PathVariable Long chapter_id) throws NotFoundException {
         return ResponseEntity.ok(chapterService.findChapter(chapter_id));
     }
-    @GetMapping("/getChapterByName")
+
+    @GetMapping("/all")
     public ResponseEntity<?> getChaptersByCompositionName(@RequestParam String name) {
         return ResponseEntity.ok(chapterService.findChaptersByCompositionName(name));
     }

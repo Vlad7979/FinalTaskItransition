@@ -10,7 +10,6 @@ import com.vladbadey.demo.repository.ChapterRepository;
 import com.vladbadey.demo.repository.CompositionRepository;
 import com.vladbadey.demo.service.ChapterService;
 import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 
 @AllArgsConstructor(onConstructor_ = @Autowired)

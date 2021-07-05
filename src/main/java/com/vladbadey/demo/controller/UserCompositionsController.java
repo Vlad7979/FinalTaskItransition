@@ -22,6 +22,11 @@ public class UserCompositionsController {
         return ResponseEntity.ok(userCompositionService.findAllUserCompositions(id));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getUserCompositions(@RequestParam String name) {
+        return ResponseEntity.ok(userCompositionService.findAllUserCompositionsByName(name));
+    }
+
     @GetMapping("/{id}/{composition_id}")
     public ResponseEntity<?> getComposition(@PathVariable Long id, @PathVariable Long composition_id) {
         return ResponseEntity.ok(userCompositionService.findUserComposition(composition_id));
