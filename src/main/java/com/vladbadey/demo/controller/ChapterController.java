@@ -38,6 +38,11 @@ public class ChapterController {
         return ResponseEntity.ok(chapter);
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<?> createChapterByName(@RequestParam String name, @RequestBody ChapterRequestDto chapterDto) {
+        return ResponseEntity.ok(chapterService.createChapterByName(name, chapterDto));
+    }
+
     @PatchMapping ("/{id}/{chapter_id}")
     public ResponseEntity<?> updateChapter(@PathVariable Long id, @PathVariable Long chapter_id,
                                            @RequestBody ChapterRequestDto chapterDto) throws NotFoundException {

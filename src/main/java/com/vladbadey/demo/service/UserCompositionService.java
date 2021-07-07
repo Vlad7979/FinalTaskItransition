@@ -18,4 +18,8 @@ public interface UserCompositionService {
     CompositionResponseDto findUserComposition(Long id);
 
     List<CompositionResponseDto> findAllUserCompositionsByName(String name);
+
+    CompositionResponseDto createCompositionByName(String name, CompositionRequestDto compositionRequestDto);
+
+    void deleteCompositionByName(String name, String composition_name);
 }

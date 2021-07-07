@@ -17,4 +17,6 @@ public interface ChapterService {
     ChapterResponseDto updateChapterById(Long id, ChapterRequestDto chapterDto) throws NotFoundException;
 
     void deleteChapterById(Long id);
+
+    ChapterResponseDto createChapterByName(String name, ChapterRequestDto chapterDto);
 }

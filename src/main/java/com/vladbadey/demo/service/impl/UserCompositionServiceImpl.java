@@ -13,6 +13,7 @@ import com.vladbadey.demo.service.UserCompositionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -84,6 +85,28 @@ public class UserCompositionServiceImpl implements UserCompositionService {
             dtoList.add(compositionMapper.toResponseDto(composition));
         }
         return dtoList;
+    }
+
+    @Override
+    public CompositionResponseDto createCompositionByName(String name, CompositionRequestDto compositionRequestDto) {
+        Composition composition = compositionMapper.toEntity(compositionRequestDto);
+        composition.setUser(userRepository.findByUsername(name).get());
+        composition.setDate(new Date());
+        composition.setFandom(fandomRepository.findByName(compositionRequestDto.getFandom()));
+        Composition savedComposition = compositionRepository.save(composition);
+        userRepository.findByUsername(name).get().getUsersCompositions().add(savedComposition);
+        userRepository.save(userRepository.findByUsername(name).get());
+        CompositionResponseDto compositionResponseDto = compositionMapper.toResponseDto(savedComposition);
+        compositionResponseDto.setFandom(compositionRequestDto.getFandom());
+        return compositionResponseDto;
+    }
+
+    @Override
+    @Transactional
+    public void deleteCompositionByName(String name, String composition_name) {
+        userRepository.findByUsername(name).get().getUsersCompositions().remove(compositionRepository.findByName(composition_name));
+        compositionRepository.findByName(composition_name).setUser(null);
+        compositionRepository.deleteByName(composition_name);
     }
 
     @Override

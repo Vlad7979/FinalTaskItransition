@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface CompositionRepository extends JpaRepository<Composition, Long> {
 
     Composition findByName(String name);
+
+    void deleteByName(String name);
 }

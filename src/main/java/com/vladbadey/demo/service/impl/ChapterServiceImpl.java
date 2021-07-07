@@ -72,4 +72,15 @@ public class ChapterServiceImpl implements ChapterService {
     public void deleteChapterById(Long id) {
         chapterRepository.deleteById(id);
     }
+
+    @Override
+    public ChapterResponseDto createChapterByName(String name, ChapterRequestDto chapterDto) {
+        Chapter chapter = chapterMapper.toEntity(chapterDto);
+        Composition composition = compositionRepository.findByName(name);
+        chapter.setComposition(composition);
+        Chapter savedChapter = chapterRepository.save(chapter);
+        composition.getChapters().add(chapter);
+        compositionRepository.save(composition);
+        return chapterMapper.toResponseDto(savedChapter);
+    }
 }

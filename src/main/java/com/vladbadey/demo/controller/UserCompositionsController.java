@@ -6,6 +6,7 @@ import com.vladbadey.demo.exceptions.NotFoundException;
 import com.vladbadey.demo.service.UserCompositionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,6 +39,12 @@ public class UserCompositionsController {
         return ResponseEntity.ok(userCompositionService.createComposition(id, compositionDto));
     }
 
+    @PostMapping( "/create")
+    public ResponseEntity<?> createCompositionByName(@RequestParam String name,
+                                                     @RequestBody CompositionRequestDto compositionRequestDto) {
+        return ResponseEntity.ok(userCompositionService.createCompositionByName(name, compositionRequestDto));
+    }
+
     @PatchMapping("/{id}/{composition_id}")
     public ResponseEntity<?> updateComposition(@PathVariable Long id, @PathVariable Long composition_id,
                                                @RequestBody CompositionRequestDto compositionDto)
@@ -49,6 +56,12 @@ public class UserCompositionsController {
     @DeleteMapping("/{id}/{composition_id}")
     public ResponseEntity<?> deleteComposition(@PathVariable Long id, @PathVariable Long composition_id) {
         userCompositionService.deleteCompositionById(id, composition_id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteCompositionByName(@RequestParam String name, @RequestParam String composition_name) {
+        userCompositionService.deleteCompositionByName(name, composition_name);
         return ResponseEntity.noContent().build();
     }
 }
