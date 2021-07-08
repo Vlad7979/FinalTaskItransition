@@ -19,5 +19,14 @@ insert into fandoms(name, image) VALUES ('Марвел', 'https://fanfics.me/ima
 insert into fandoms(name, image) VALUES ('Властелин колец', 'https://fanfics.me/images/fandoms_avatars/wallpaper/25.jpg');
 insert into fandoms(name, image) VALUES ('Гарри Поттер', 'https://fanfics.me/images/fandoms_avatars/wallpaper/2.jpg');
 
+select * from pg_stat_activity where usename = 'dfeyceqwntpvrc';
+
+alter system set idle_in_transaction_session_timeout='1min';
+
+SET SESSION idle_in_transaction_session_timeout = '1min';
+
+show idle_in_transaction_session_timeout;
+
+SET SESSION idle_in_transaction_session_timeout = 0;
 
 
