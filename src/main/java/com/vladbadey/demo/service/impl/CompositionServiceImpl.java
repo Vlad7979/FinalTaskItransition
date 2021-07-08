@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class CompositionServiceImpl implements CompositionService {
 
     private final CompositionRepository compositionRepository;

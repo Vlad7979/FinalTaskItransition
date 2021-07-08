@@ -9,11 +9,7 @@ import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring")
-@Slf4j
 public abstract class CompositionMapper {
-
-    @Autowired
-    private FandomRepository fandomRepository;
 
     public CompositionResponseDto toResponseDto(Composition composition) {
         CompositionResponseDto compositionResponseDto = new CompositionResponseDto();
