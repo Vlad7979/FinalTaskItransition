@@ -3,6 +3,7 @@ package com.vladbadey.demo.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,14 +33,14 @@ public class Composition {
     @Column(name = "date")
     private Date date;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<Chapter> chapters = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable( name = "composition_fandom",
             joinColumns = @JoinColumn(name = "composition_id"),
             inverseJoinColumns = @JoinColumn(name = "fandom_id"))

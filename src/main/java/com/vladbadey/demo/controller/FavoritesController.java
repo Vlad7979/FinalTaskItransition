@@ -17,7 +17,7 @@ import java.util.Set;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/favorites")
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class FavoritesController {
 
     private final UserRepository userRepository;

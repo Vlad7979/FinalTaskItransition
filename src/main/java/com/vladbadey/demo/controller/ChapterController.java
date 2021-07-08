@@ -16,7 +16,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/compositions/chapters")
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class ChapterController {
 
     private final ChapterService chapterService;

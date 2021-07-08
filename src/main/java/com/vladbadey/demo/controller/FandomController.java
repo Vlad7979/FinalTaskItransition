@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/fandoms")
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class FandomController {
 
     private final FandomService fandomService;

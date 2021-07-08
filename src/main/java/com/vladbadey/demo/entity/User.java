@@ -1,5 +1,6 @@
 package com.vladbadey.demo.entity;
 
+import com.vladbadey.demo.enums.ERole;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 
@@ -46,6 +47,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    {roles.add(new Role(ERole.ROLE_USER));}
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_fandoms",

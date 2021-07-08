@@ -13,7 +13,7 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/user")
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
 
     private final UserRepository userRepository;

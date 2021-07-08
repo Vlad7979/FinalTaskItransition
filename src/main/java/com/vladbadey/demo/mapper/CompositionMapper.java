@@ -1,24 +1,34 @@
 package com.vladbadey.demo.mapper;
 
-import com.vladbadey.demo.dto.request.ChapterRequestDto;
 import com.vladbadey.demo.dto.request.CompositionRequestDto;
-import com.vladbadey.demo.dto.response.ChapterResponseDto;
 import com.vladbadey.demo.dto.response.CompositionResponseDto;
-import com.vladbadey.demo.entity.Chapter;
 import com.vladbadey.demo.entity.Composition;
+import com.vladbadey.demo.repository.FandomRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Mapper(componentModel = "spring")
+@Slf4j
 public abstract class CompositionMapper {
 
-    public abstract CompositionResponseDto toResponseDto(Composition composition);
+    @Autowired
+    private FandomRepository fandomRepository;
 
-    @Mapping(target = "id", ignore = true)
-    public abstract Composition toEntity(CompositionRequestDto compositionRequestDto);
+    public CompositionResponseDto toResponseDto(Composition composition) {
+        CompositionResponseDto compositionResponseDto = new CompositionResponseDto();
+        compositionResponseDto.setName(composition.getName());
+        compositionResponseDto.setDescription(composition.getDescription());
+        compositionResponseDto.setImage(composition.getImage());
+        compositionResponseDto.setFandom(composition.getFandom().getName());
+        return compositionResponseDto;
+    }
 
-    @Mapping(target = "id", ignore = true)
-    public abstract void updateComposition(CompositionRequestDto compositionRequestDto,
-                                           @MappingTarget Composition composition);
+    public Composition toEntity(CompositionRequestDto compositionRequestDto) {
+        Composition composition = new Composition();
+        composition.setName(compositionRequestDto.getName());
+        composition.setDescription(compositionRequestDto.getDescription());
+        composition.setImage(compositionRequestDto.getImage());
+        return composition;
+    }
 }

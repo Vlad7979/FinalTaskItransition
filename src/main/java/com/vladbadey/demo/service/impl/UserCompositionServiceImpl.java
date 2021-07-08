@@ -4,7 +4,6 @@ import com.vladbadey.demo.dto.request.CompositionRequestDto;
 import com.vladbadey.demo.dto.response.CompositionResponseDto;
 import com.vladbadey.demo.entity.Composition;
 import com.vladbadey.demo.entity.User;
-import com.vladbadey.demo.exceptions.NotFoundException;
 import com.vladbadey.demo.mapper.CompositionMapper;
 import com.vladbadey.demo.repository.CompositionRepository;
 import com.vladbadey.demo.repository.FandomRepository;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @Service
 public class UserCompositionServiceImpl implements UserCompositionService {
 
@@ -32,6 +31,7 @@ public class UserCompositionServiceImpl implements UserCompositionService {
     private final FandomRepository fandomRepository;
 
     @Override
+    @Transactional
     public CompositionResponseDto createComposition(Long id, CompositionRequestDto compositionDto) {
         Composition composition = compositionMapper.toEntity(compositionDto);
         composition.setUser(userRepository.getById(id));
@@ -45,20 +45,6 @@ public class UserCompositionServiceImpl implements UserCompositionService {
         return compositionResponseDto;
     }
 
-    @Override
-    public CompositionResponseDto updateCompositionById(Long id, Long composition_id, CompositionRequestDto compositionDto)
-            throws NotFoundException {
-        Composition updatedComposition = compositionRepository.findById(composition_id).
-                orElseThrow(() -> new NotFoundException(String.format("Composition with id = %d doesn't exists", composition_id)));
-
-        userRepository.getById(id).getUsersCompositions().remove(compositionRepository.getById(composition_id));
-        userRepository.getById(id).getUsersCompositions().add(compositionRepository.getById(composition_id));
-
-        compositionMapper.updateComposition(compositionDto, updatedComposition);
-        compositionRepository.save(updatedComposition);
-
-        return compositionMapper.toResponseDto(updatedComposition);
-    }
 
     @Override
     public void deleteCompositionById(Long id, Long composition_id) {

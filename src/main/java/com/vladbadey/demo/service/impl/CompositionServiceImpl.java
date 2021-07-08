@@ -2,10 +2,9 @@ package com.vladbadey.demo.service.impl;
 
 import com.vladbadey.demo.dto.response.CompositionResponseDto;
 import com.vladbadey.demo.entity.Composition;
-import com.vladbadey.demo.entity.Fandom;
 import com.vladbadey.demo.mapper.CompositionMapper;
+import com.vladbadey.demo.mapper.CompositionMapperImpl;
 import com.vladbadey.demo.repository.CompositionRepository;
-import com.vladbadey.demo.repository.FandomRepository;
 import com.vladbadey.demo.service.CompositionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +13,13 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 
-@AllArgsConstructor(onConstructor_ = @Autowired)
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @Service
 public class CompositionServiceImpl implements CompositionService {
 
     private final CompositionRepository compositionRepository;
 
     private final CompositionMapper compositionMapper;
-
-    private final FandomRepository fandomRepository;
 
     @Override
     public List<CompositionResponseDto> findAllCompositions() {
