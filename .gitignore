@@ -31,6 +31,7 @@ build/
 /.idea
 /.node_modules
 /src/frontend
+/src/frontend/react-jwt-auth
 /src/react
 init.sql
 
