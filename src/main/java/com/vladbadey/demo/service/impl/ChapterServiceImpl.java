@@ -74,8 +74,9 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
-    public void deleteChapter(String chapter_name) {
-        chapterRepository.deleteByName(chapter_name);
+    @Transactional
+    public void deleteChapter(String name) {
+        chapterRepository.deleteByName(name);
     }
 
     @Override

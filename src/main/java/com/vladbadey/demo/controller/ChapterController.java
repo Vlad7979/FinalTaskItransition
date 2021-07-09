@@ -57,8 +57,8 @@ public class ChapterController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteChapterByName(@RequestParam String chapter_name) {
-        chapterService.deleteChapter(chapter_name);
+    public ResponseEntity<?> deleteChapterByName(@RequestParam String name) {
+        chapterService.deleteChapter(name);
         return ResponseEntity.noContent().build();
     }
 }
