@@ -19,4 +19,6 @@ public interface ChapterService {
     void deleteChapterById(Long id);
 
     ChapterResponseDto createChapterByName(String name, ChapterRequestDto chapterDto);
+
+    void deleteChapter(String chapter_name);
 }

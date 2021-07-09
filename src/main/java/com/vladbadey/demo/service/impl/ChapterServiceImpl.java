@@ -74,6 +74,11 @@ public class ChapterServiceImpl implements ChapterService {
     }
 
     @Override
+    public void deleteChapter(String chapter_name) {
+        chapterRepository.deleteByName(chapter_name);
+    }
+
+    @Override
     public ChapterResponseDto createChapterByName(String name, ChapterRequestDto chapterDto) {
         Chapter chapter = chapterMapper.toEntity(chapterDto);
         Composition composition = compositionRepository.findByName(name);

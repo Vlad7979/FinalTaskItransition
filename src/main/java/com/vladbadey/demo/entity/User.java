@@ -4,6 +4,7 @@ import com.vladbadey.demo.enums.ERole;
 import lombok.*;
 import org.hibernate.annotations.Cascade;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -42,12 +43,12 @@ public class User {
 
     private boolean flag;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-    {roles.add(new Role(ERole.ROLE_USER));}
+//    {roles.add(new Role(ERole.ROLE_USER));}
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_fandoms",
@@ -55,10 +56,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "fandom_id"))
     private Set<Fandom> fandoms = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<Composition> usersCompositions = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_favorites_compositions",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "composition_id"))

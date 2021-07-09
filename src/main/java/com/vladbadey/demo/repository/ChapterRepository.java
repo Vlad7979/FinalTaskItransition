@@ -10,4 +10,6 @@ import java.util.Set;
 public interface ChapterRepository extends JpaRepository<Chapter, Long> {
 
     Chapter findChapterByCompositionName(String name);
+
+    void deleteByName(String name);
 }

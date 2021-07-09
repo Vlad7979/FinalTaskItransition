@@ -55,4 +55,10 @@ public class ChapterController {
         chapterService.deleteChapterById(chapter_id);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> deleteChapterByName(@RequestParam String chapter_name) {
+        chapterService.deleteChapter(chapter_name);
+        return ResponseEntity.noContent().build();
+    }
 }
