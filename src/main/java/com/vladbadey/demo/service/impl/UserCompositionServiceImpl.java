@@ -96,6 +96,12 @@ public class UserCompositionServiceImpl implements UserCompositionService {
     }
 
     @Override
+    public String findCompositionUser(String name) {
+        Composition composition = compositionRepository.findByName(name);
+        return composition.getUser().getUsername();
+    }
+
+    @Override
     public CompositionResponseDto findUserComposition(Long id) {
         Composition composition = compositionRepository.getById(id);
         return compositionMapper.toResponseDto(composition);

@@ -32,6 +32,11 @@ public class UserCompositionsController {
         return ResponseEntity.ok(userCompositionService.findUserComposition(composition_id));
     }
 
+    @GetMapping("/getUser")
+    public ResponseEntity<?> getCompositionUser(@RequestParam String name) {
+        return ResponseEntity.ok(userCompositionService.findCompositionUser(name));
+    }
+
     @PostMapping("/{id}/create")
     public ResponseEntity<?> createComposition(@PathVariable Long id,
                                                @RequestBody CompositionRequestDto compositionDto) {

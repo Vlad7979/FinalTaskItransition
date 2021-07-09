@@ -20,4 +20,6 @@ public interface UserCompositionService {
     CompositionResponseDto createCompositionByName(String name, CompositionRequestDto compositionRequestDto);
 
     void deleteCompositionByName(String name, String composition_name);
+
+    String findCompositionUser(String name);
 }
