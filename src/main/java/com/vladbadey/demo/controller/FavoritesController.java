@@ -48,6 +48,20 @@ public class FavoritesController {
         return savedCompositions;
     }
 
+    @GetMapping("/get")
+    public ResponseEntity<?> getFavoriteByUsernameAndCompositionName(@RequestParam String username,
+                                                                     @RequestParam String composition_name) {
+        User user = userRepository.findByUsername(username).get();
+        Composition composition = compositionRepository.findByName(composition_name);
+        CompositionResponseDto compositionResponseDto = new CompositionResponseDto();
+        for (Composition c : user.getFavoritesCompositions()) {
+            if (c.getName().equals(composition.getName())) {
+                compositionResponseDto = compositionMapper.toResponseDto(c);
+            }
+        }
+        return ResponseEntity.ok(compositionResponseDto);
+    }
+
     @PostMapping("/{id}/add")
     public ResponseEntity<?> addNewFavorite(@PathVariable Long id, @RequestParam(name = "id") Long composition_id) {
         Set<Composition> compositions = userRepository.getById(id).getFavoritesCompositions();

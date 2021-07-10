@@ -1,8 +1,6 @@
 package com.vladbadey.demo.controller;
 
 import com.vladbadey.demo.dto.request.CompositionRequestDto;
-import com.vladbadey.demo.dto.response.CompositionResponseDto;
-import com.vladbadey.demo.exceptions.NotFoundException;
 import com.vladbadey.demo.service.UserCompositionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
