@@ -83,4 +83,11 @@ public class FavoritesController {
         compositions.remove(compositionRepository.getById(composition_id));
         userRepository.save(userRepository.getById(id));
     }
+
+    @DeleteMapping("/delete")
+    public void deleteFavorite(@RequestParam String username, @RequestParam String composition_name) {
+        Set<Composition> compositions = userRepository.findByUsername(username).get().getFavoritesCompositions();
+        compositions.remove(compositionRepository.findByName(composition_name));
+        userRepository.save(userRepository.findByUsername(username).get());
+    }
 }
